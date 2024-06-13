@@ -1,11 +1,11 @@
 package br.com.alura.screenmatch2.model;
 
 public enum Categoria {
-    ACAO,
-    ROMANCE,
-    COMEDIA,
-    DRAMA,
-    CRIME;
+    ACAO("Action"),
+    ROMANCE("Romance"),
+    COMEDIA("Comedy"),
+    DRAMA("Drama"),
+    CRIME("Crime");
 
     private String categoriaOmdb;
 

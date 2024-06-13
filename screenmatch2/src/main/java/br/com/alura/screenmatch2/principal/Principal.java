@@ -2,15 +2,12 @@ package br.com.alura.screenmatch2.principal;
 
 import br.com.alura.screenmatch2.model.DadosSerie;
 import br.com.alura.screenmatch2.model.DadosTemporada;
-import br.com.alura.screenmatch2.model.Episodio;
+import br.com.alura.screenmatch2.model.Serie;
 import br.com.alura.screenmatch2.service.ConsumoApi;
+import br.com.alura.screenmatch2.service.ConsultaGoogleTranslate;
 import br.com.alura.screenmatch2.service.ConverteDados;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -29,33 +26,33 @@ public class Principal {
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar séries buscadas
-
                     0 - Sair                                 
                     """;
 
-            System.out.println ( menu );
-            opcao = leitura.nextInt ( );
-            leitura.nextLine ( );
+            System.out.println(menu);
+            opcao = leitura.nextInt();
+            leitura.nextLine();
 
             switch (opcao) {
                 case 1:
-                    buscarSerieWeb ( );
+                    buscarSerieWeb();
                     break;
                 case 2:
-                    buscarEpisodioPorSerie ( );
+                    buscarEpisodioPorSerie();
                     break;
                 case 3:
-                   listarSeriesBuscadas();
-                   break;
+                    listarSeriesBuscadas();
+                    break;
                 case 0:
-                    System.out.println ( "Saindo..." );
+                    System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println ( "Opção inválida" );
+                    System.out.println("Opção inválida");
             }
         }
     }
-        private void buscarSerieWeb() {
+
+    private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
         dadosSeries.add(dados);
         System.out.println(dados);
@@ -66,10 +63,17 @@ public class Principal {
         var nomeSerie = leitura.nextLine();
         var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
         DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
+
+        // Traduzindo a sinopse
+        String sinopseTraduzida = ConsultaGoogleTranslate.obterTraducao(dados.sinopse());
+
+        // Criando um novo objeto DadosSerie com a sinopse traduzida
+        dados = new DadosSerie(dados.titulo(), dados.totalTemporadas(), dados.avaliacao(), dados.genero(), dados.atores(), dados.poster(), sinopseTraduzida);
+
         return dados;
     }
 
-    private void buscarEpisodioPorSerie(){
+    private void buscarEpisodioPorSerie() {
         DadosSerie dadosSerie = getDadosSerie();
         List<DadosTemporada> temporadas = new ArrayList<>();
 
@@ -80,7 +84,13 @@ public class Principal {
         }
         temporadas.forEach(System.out::println);
     }
+
     private void listarSeriesBuscadas() {
-        dadosSeries.forEach(System.out::println);
+        List<Serie> series = dadosSeries.stream()
+                .map(d -> new Serie(d))
+                .collect(Collectors.toList());
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 }
