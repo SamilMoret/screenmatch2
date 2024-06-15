@@ -6,11 +6,10 @@ import br.com.alura.screenmatch2.model.Serie;
 import br.com.alura.screenmatch2.repository.SerieRepository;
 import br.com.alura.screenmatch2.service.ConsumoApi;
 import br.com.alura.screenmatch2.service.ConsultaGoogleTranslate;
-import br.com.alura.screenmatch2.service.ConverteDados;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.alura.screenmatch2.service.ConverteDados;import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Principal {
 
@@ -24,7 +23,8 @@ public class Principal {
 
     private SerieRepository repositorio;
 
-    public Principal (SerieRepository repositorio) {
+
+    public Principal(SerieRepository repositorio) {
         this.repositorio = repositorio;
     }
 
@@ -98,10 +98,7 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        List<Serie> series = dadosSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
-
+        List<Serie> series = repositorio.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
