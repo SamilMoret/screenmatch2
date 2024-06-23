@@ -5,7 +5,7 @@ Este projeto é o resultado do curso **Java: Persistência de Dados e Consultas 
 Durante o curso, desenvolvi a aplicação Screenmatch, focada na gestão de séries e filmes, utilizando várias tecnologias modernas.
 
 
-![Demonstração do Screenmatch ]()
+![Demonstração do Screenmatch ](https://github.com/SamilMoret/screenmatch2/blob/main/Anima%C3%A7%C3%A3o_Screenmatch2.gif)
 
 
 ## Funcionalidades
