@@ -4,6 +4,10 @@
 Este projeto é o resultado do curso **Java: Persistência de Dados e Consultas com Spring Data JPA** do programa ONE Oracle + Alura. 
 Durante o curso, desenvolvi a aplicação Screenmatch, focada na gestão de séries e filmes, utilizando várias tecnologias modernas.
 
+
+![Demonstração do Screenmatch ]()
+
+
 ## Funcionalidades
 - 📦 **Modelagem de Classes e Relacionamento entre Entidades**:
   - Criação de classes específicas para diferentes tipos de mídia, como séries.
