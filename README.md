@@ -42,7 +42,7 @@ Agradeço às professoras **Jacqueline Oliveira** e **Iasmin Araújo** pela exce
 - ![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 - ![MySQL](https://img.shields.io/badge/MySQL-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 - ![Google API](https://img.shields.io/badge/Google%20API-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white)
-
+- ![Maven](https://img.shields.io/badge/Maven-%23C71A36.svg?style=for-the-badge&logo=apache-maven&logoColor=white)
 ## Feito por:
 Samil Moret
 
